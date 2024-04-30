@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link component
 import schoolData from './data/ks2_results_data.json'; // Adjust the path as needed
 
 function Home() {
@@ -35,7 +36,9 @@ function Home() {
                 <tbody>
                     {filteredSchools.map((school, index) => (
                         <tr key={index} className={index % 2 === 0 ? "bg-gray-50" : ""}>
-                            <td className="px-4 py-2">{school.SCHNAME}</td>
+                            <td className="px-4 py-2">
+                                <Link to={`/schools/${school.id}`}>{school.SCHNAME}</Link> {/* Make school name a clickable link */}
+                            </td>
                             <td className="px-4 py-2">{school.PTRWM_EXP}</td>
                         </tr>
                     ))}
@@ -44,6 +47,5 @@ function Home() {
         </div>
     );
 }
-
 
 export default Home;
