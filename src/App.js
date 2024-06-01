@@ -14,7 +14,6 @@ function App() {
           {/* <Route path="/schools" exact element={<SchoolList />} /> */}
           <Route path="/schools" exact element={<Home />} />
           <Route path="/schools/:schoolId" element={<SchoolDetail />} />
-          {/* <Route path="/schools/:schoolId" element={<Home />} /> */}
           <Route path="/login" element={<Home />} />
         </Routes>
       </div>
