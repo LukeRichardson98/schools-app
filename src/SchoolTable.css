@@ -1,0 +1,15 @@
+/* SchoolTable.css */
+.scroll-container {
+    max-height: 1000px; /* Set the desired height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Hide the scroll bar but still allow scrolling */
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}

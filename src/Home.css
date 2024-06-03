@@ -1,0 +1,17 @@
+/* Home.css */
+.flex {
+    display: flex;
+}
+.w-3/4 {
+    width: 75%;
+}
+.w-1/4 {
+    width: 25%;
+}
+.pl-4 {
+    padding-left: 1rem;
+}
+.arrow {
+    font-size: 2rem;
+    color: gray;
+}

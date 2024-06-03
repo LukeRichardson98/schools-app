@@ -11,6 +11,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/compare/:schoolIds" element={<SchoolDetail />} />
           {/* <Route path="/schools" exact element={<SchoolList />} /> */}
           <Route path="/schools" exact element={<Home />} />
           <Route path="/schools/:schoolId" element={<SchoolDetail />} />

@@ -1,43 +1,51 @@
-import React, { useEffect } from 'react';
+// SchoolDetail.js
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import schoolData from './data/ks2_results_data.json'; // Adjust the path as needed
-import SchoolChart from './SchoolChart';
+import './SchoolDetail.css'; // Import the CSS file for styling
 
 function SchoolDetail() {
-    const params = useParams();
+    const { schoolIds } = useParams();
+    const [schools, setSchools] = useState([]);
 
-    const schoolId = params.schoolId;
-    console.log(schoolId)
-    const school = schoolData.find(school => school.school_id === params.schoolId);
+    useEffect(() => {
+        const ids = schoolIds.split(',');
+        const selectedSchools = ids.map(id => schoolData.find(school => school.school_id === id)).filter(Boolean);
+        setSchools(selectedSchools);
+    }, [schoolIds]);
 
-    if (school) {
-        // School found, you can now use foundSchool
-        console.log(school);
-    } else {
-        // School not found
-        console.log("School not found");
+    if (schools.length === 0) {
+        return <div>No schools found</div>;
     }
 
+    // Get columns excluding the first 'field1' column
+    const columns = Object.keys(schools[0]).filter(column => column !== 'field1');
 
     return (
         <div>
             <h1>School Detail Page</h1>
-            <ul>
-                <li>
-                    School ID: {params.schoolId};
-                </li>
-                <li>
-                    School Name: {school.SCHNAME};
-                </li>
-                <li>
-                    School score: {school.PTRWM_EXP};
-                </li>
-            </ul>
-            <SchoolChart school={school} />
-            {/* Display school details using Highcharts */}
+            <div className="table-container">
+                <table className="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            {columns.map(column => (
+                                <th key={column} className={`py-2 ${column === 'SCHNAME' ? 'sticky-col' : ''}`}>{column}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {schools.map(school => (
+                            <tr key={school.school_id}>
+                                {columns.map(column => (
+                                    <td key={column} className={`border px-4 py-2 ${column === 'SCHNAME' ? 'sticky-col' : ''}`}>{school[column]}</td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
-
 
 export default SchoolDetail;

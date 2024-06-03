@@ -1,0 +1,25 @@
+/* SchoolDetail.css */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    position: relative;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+    white-space: nowrap;
+}
+
+.sticky-col {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 1;
+    filter: drop-shadow(2px 2px 1px rgba(60, 60, 60, 0.3));
+    box-shadow: 10px 10 10 #fff;
+}
