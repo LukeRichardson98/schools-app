@@ -1,15 +1,17 @@
+// SchoolChart.js
 import React, { useEffect } from 'react';
 import Highcharts from 'highcharts';
 // import HighchartsReact from 'highcharts-react-official';
 
-function SchoolChart({ school }) {
+function SchoolChart({ schools }) {
     useEffect(() => {
-        if (school) {
-            // Extract the subjects and corresponding performance data from schoolData
-            const subjects = Object.keys(school).filter(key => key.startsWith('DIFFN_'));
-            const performanceData = subjects.map(subject => parseFloat(school[subject]));
+        if (schools && schools.length > 0) {
+            const subjects = Object.keys(schools[0]).filter(key => key.startsWith('DIFFN_'));
+            const seriesData = schools.map(school => ({
+                name: school.SCHNAME,
+                data: subjects.map(subject => parseFloat(school[subject])),
+            }));
 
-            // Create the chart options
             const options = {
                 chart: {
                     type: 'column'
@@ -25,16 +27,12 @@ function SchoolChart({ school }) {
                         text: 'Performance'
                     }
                 },
-                series: [{
-                    name: 'Performance',
-                    data: performanceData
-                }]
+                series: seriesData
             };
 
-            // Render the chart
             Highcharts.chart('school-chart', options);
         }
-    }, [school]);
+    }, [schools]);
 
     return (
         <div id="school-chart"></div>

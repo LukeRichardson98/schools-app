@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import schoolData from './data/ks2_results_data.json'; // Adjust the path as needed
+import SchoolChart from './SchoolChart';
 import './SchoolDetail.css'; // Import the CSS file for styling
 
 function SchoolDetail() {
@@ -44,6 +45,7 @@ function SchoolDetail() {
                     </tbody>
                 </table>
             </div>
+            <SchoolChart schools={schools} />
         </div>
     );
 }
